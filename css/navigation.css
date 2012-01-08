@@ -1,0 +1,42 @@
+div#navigationHolder {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+    height: 25px;
+}
+
+div#navigationContent {
+    display: none;
+}
+
+div#navigationHider {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 1;
+    width: 90px;
+    padding: 5px;
+    text-align: center;
+}
+
+div#navigationHolder ,
+div#navigationHider {
+    background-color: #D5CDA9;
+    border-bottom: 2px #544C4A solid;
+    border-left: 2px #544C4A solid;
+    border-radius: 0 0 0 5px;
+}
+
+div#navigationHolder:hover {
+    width: 130px;
+    height: 200px;
+}
+
+div#navigationHolder:hover div#navigationContent {
+    display: block;
+}
+
+div#navigationHolder:hover div#navigationHider {
+    display: none;
+}
