@@ -40,87 +40,111 @@
 
     <div id="container">
         <header>
-            <h1>Basics. Syntax and Selectors</h1>
+            <h1>Fonts</h1>
         </header>
-        <div id="main" role="main">
-<h3>Type selector</h3>
+<div id="main" role="main">
+<h3>Font sizes</h3>
+<p>The font size can be set using the attribute font-size:</p>
 <pre>
-    <em>selector</em> {attribute:  value;}
+    selector {<em>font-size:  size</em>}
 </pre>
 <p>
-where the selector is any <em>html tag eg p, h1, body</em>
-attribute characterize an element such as <em>width, color, background</em>
-value is the specific value for a attribute, eg '300px', 'yellow', 'green'
+size can be defined in four different ways:</p>
+<h4>Name value, absolute:</h4>
+   
+<p>
+    <em>xx-small</em><br />
+    <em>x-small</em><br />
+    <em>small</em><br />
+    <em>medium</em><br />
+    <em>large</em><br />
+    <em>x-large</em><br />
+    <em>xx-large</em><br />
 </p>
 
-<h3>Universal selector</h3>
-<pre>
-    <em>*</em> {attribute:  value;}
-</pre>
+   
+<h4>Relative value to:</h4>
 <p>
-This selector selects all elements in html document.
+    <em>smaller</em> - less than the current<br />
+
+    <em>larger</em> - bigger than the current<br />
 </p>
 
-<h3>Descendant selector</h3>
-<pre>
-    <em>descendant1 descendant2 ... descendant</em> {attribute:  value;}
-</pre>
+<h4>Unit of length</h4>   
 <p>
-This type of selector lets you select elements that are lower in the hierarchy tree of the document. This enables us for example to give a  different font size for links which are placed in paragraph.
-<pre>
-    <em>p a </em>{font-size: 16px;}
-</pre>
+    <em>size 1.2 cm</em><br />
 
-<h3>Child selector</h3>
-<pre>
-    <em>parent>  child</em> {feature:  value}
-</pre>
-<p>
-The selector allows you to selects elements that are direct child of a parent. This differs from the previous case, in this case the child is directly inside the parent tag.
+    <em>size 14mm</em><br />
+
+    <em>size 0.45in</em><br />
+
+    <em>size 12pt</em><br />
+
+    <em>size 2pc</em><br />
+
+    <em>size 12px</em><br />
+
+    <em>size 1em</em><br />
+
+    <em>size 2ex</em><br />
+Unit "<em>em</em>" is a relative measure. This refers to the size of the font defined for the parent element. <em>1em</em> = 100% of the parent
 </p>
 
-<h3>Sibling selector</h3>
-<pre>
-    <em>sibling1 + sibling2</em> {attribute:  value}
-</pre>
+
+
+<h4>The percentage of current size</h4>   
 <p>
-The selector allows you to give this type of attribute elements, which are on the same hierarchical level as the selector before "+" sign, in our case "sibling1".
-</p>
-                  
-<h3>Attribute selector</h3>
-<pre>
-    <em>selector[attribute]</em> {attribute: value}
-</pre>
-<p>
-Selector can be any html element such as p, h1, div. An attribute is any attribute.
-<pre>
-    <em>p [title]</em> {font-size: 16px;}
-</pre>    
-</p>
-The above example will sets the font size of 16px each p element which has title attribute
-
-    <em>p [title = "Sample Title"]</em> {font-size: 16px;}
-
-The above example, sets the font size of 16px each p element that are given the title attribute with a value of  "sample title."
-
-This type of selector does not work in IE 6 and older.
+    <em>size 13%</em><br />
+    <em>size 150%</em><br />
 </p>
 
-<h3>Class selectors</h3>
-<pre>
-    <em>selector.class</em> {attribute:  value}
-</pre>
+<h3>Type of font</h3>   
 
-The selector is any tag p h1, div. Class is a class attribute value (class = "class")
-
-<h3>id selector</h3>
 <pre>
-    <em>selector#id</em> {attribute:  value}
+    selector {<em>font-family:</em> fonttype1, fonttype2, fonttype3 ...}
 </pre>
 <p>
-The selector is any tag p, h1, div. id is the id (id = "id")
-</p> 
- </div>
+The selector is any tag, fonttype... is the name of the font type.  If the particular user does not have fonttype1 in his system, webbrowser will render text with fonttype2 and so on.
+
+You can also font embedding, eg:
+<pre>
+    <em>@font-face</em> {
+        <em>font-family</em>: comic;
+        <em>src:</em> local ("Comic Font Regular"),url (http://address/file.ttf) format("truetype");
+    }
+</pre>
+
+But this does not work in all popular browsers.
+If you want to use custom fonts use <a href="http://code.google.com/apis/webfonts/" target="_blank">Google Web Fonts API</a> is definitely the best solution that works in all browsers. Another solution is the <a href="http://cufon.shoqolate.com/generate/" target="_blank">Cufon</a>. However, these methods are not the subject of this course.
+</p>
+
+<h3>Font Style</h3>
+<pre>
+    selector {<em>font-style:</em> style; }
+</pre>
+<p>
+The selector is any tag,  style is one of the three values:<br />
+<em>normal</em> - normal font<br />
+</em>italic</em> - <span style="font-style: italic;">italic font (if unavailable, oblique style is chosen)</span><br />
+</em>oblique</em> - <span style="font-style: oblique;">the font italic</span><br />
+</p>
+
+<h3>The thickness of the font:</h3>
+<pre>
+    selector {<em>font-weight:</em> weight}
+</pre>
+<p>
+The selector is any tag, weight defines the thickness of the font. Allowed values ​​for weight are: 100, 200, 300, 400, 500 (normal), 600, 700 (bold), 800, 900 ...
+</p>
+
+<h3>Font variant</h3>
+<pre>
+    selector {<em>font-variant:</em> variant;}
+</pre>
+<p>
+The selector is any tag. The variant options are: <em>normal</em> (normal font) and <em>small-caps</em> (small caps). Caps are capitals, but sized of small letter.
+</p>
+</div>
 
         <footer>
 

@@ -40,87 +40,67 @@
 
     <div id="container">
         <header>
-            <h1>Basics. Syntax and Selectors</h1>
+            <h1>Content property</h1>
         </header>
-        <div id="main" role="main">
-<h3>Type selector</h3>
-<pre>
-    <em>selector</em> {attribute:  value;}
-</pre>
+<div id="main" role="main">
 <p>
-where the selector is any <em>html tag eg p, h1, body</em>
-attribute characterize an element such as <em>width, color, background</em>
-value is the specific value for a attribute, eg '300px', 'yellow', 'green'
+One of the very interesting but not so often used CSS features is "<em>content</em>" property.<br />
+Lets see how it looks like:
+<pre>
+    .password<em>:before</em> {
+        <em>content: "Password: ";</em>
+    }
+</pre>
+Now all elements with class "password" will have <em>Password: </em> text preceding them.
 </p>
 
-<h3>Universal selector</h3>
-<pre>
-    <em>*</em> {attribute:  value;}
-</pre>
+<h4>Separation Of Concerns problem</h4>
 <p>
-This selector selects all elements in html document.
+It can be debated whether this kind of thing should be handled in CSS.<br />
+Separation of concerns means that content should be handled by html and design by css.<br />
+This is the reason <em>content</em> property is so rarely used.<br /><br />
+
+In some cases using <em>content</em> property can be a design decision.<br />
+Consider 2 versions of the same page - normal and mobile version.<br /> 
+For mobile version we would display small key image before password field<br />
+For normal version we would output "Password:"<br />
+As you can see this is clearly a design decision, so use of <em>content</em> property is well justified.
 </p>
 
-<h3>Descendant selector</h3>
-<pre>
-    <em>descendant1 descendant2 ... descendant</em> {attribute:  value;}
-</pre>
+<h4>Checkmark example:</h4>
 <p>
-This type of selector lets you select elements that are lower in the hierarchy tree of the document. This enables us for example to give a  different font size for links which are placed in paragraph.
+Let's see one of <em>content</em> property example:
 <pre>
-    <em>p a </em>{font-size: 16px;}
+#hoverExample a:hover:before {
+   content:  "\2713 ";
+}
 </pre>
-
-<h3>Child selector</h3>
-<pre>
-    <em>parent>  child</em> {feature:  value}
-</pre>
+<em>"\2713 "</em> here is an <a href="http://en.wikipedia.org/wiki/ASCII" target="_blank">ASCII</a> character code for checkmark symbol.<br />
+This styling will add checkmark symbol before the link you are hovering upon.
+</p>
+<div class="playground">
+    <pre class="exampleHtml">
+<div id="hoverExample">        
+    <a href="">This page</a><br />
+    <a href="http://ajaxian.com/">Ajaxian Blog</a><br />
+    <a href="http://en.wikipedia.org/wiki/ASCII">ASCII Wikipedia Entry</a><br />
+</div>    
+    </pre>
+    <pre class="exampleCss">
+    #hoverExample a:hover:before {
+    content:  "\2713 ";
+    }    
+    </pre>
+</div>
 <p>
-The selector allows you to selects elements that are direct child of a parent. This differs from the previous case, in this case the child is directly inside the parent tag.
+This example was originally made for checkmarking visited links, but due to the <a href="http://hacks.mozilla.org/2010/03/privacy-related-changes-coming-to-css-vistited/">security issues</a> with <em>visited</em> selector it's support was recently removed from browsers.<br />
 </p>
 
-<h3>Sibling selector</h3>
-<pre>
-    <em>sibling1 + sibling2</em> {attribute:  value}
-</pre>
 <p>
-The selector allows you to give this type of attribute elements, which are on the same hierarchical level as the selector before "+" sign, in our case "sibling1".
-</p>
-                  
-<h3>Attribute selector</h3>
-<pre>
-    <em>selector[attribute]</em> {attribute: value}
-</pre>
-<p>
-Selector can be any html element such as p, h1, div. An attribute is any attribute.
-<pre>
-    <em>p [title]</em> {font-size: 16px;}
-</pre>    
-</p>
-The above example will sets the font size of 16px each p element which has title attribute
-
-    <em>p [title = "Sample Title"]</em> {font-size: 16px;}
-
-The above example, sets the font size of 16px each p element that are given the title attribute with a value of  "sample title."
-
-This type of selector does not work in IE 6 and older.
+Very neat thing about <em>content</em> property is that it can be used to add not only text but also html.<br />
 </p>
 
-<h3>Class selectors</h3>
-<pre>
-    <em>selector.class</em> {attribute:  value}
-</pre>
-
-The selector is any tag p h1, div. Class is a class attribute value (class = "class")
-
-<h3>id selector</h3>
-<pre>
-    <em>selector#id</em> {attribute:  value}
-</pre>
-<p>
-The selector is any tag p, h1, div. id is the id (id = "id")
-</p> 
- </div>
+</div>
 
         <footer>
 
