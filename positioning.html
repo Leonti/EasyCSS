@@ -1,0 +1,308 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/b/378 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+  <!-- CSS: implied media=all -->
+  <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navigation.css"> 
+  <link rel="stylesheet" href="css/tutorial.css">
+  <!-- end CSS-->
+
+  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+
+  <!-- All JavaScript at the bottom, except for Modernizr / Respond.
+       Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
+       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="js/libs/modernizr-2.0.6.min.js"></script>
+</head>
+
+<body>
+
+    <div id="container">
+        <header>
+            <h1>Css positioning</h1>
+        </header>
+<div id="main" role="main">
+<p>
+    When browser parses html page it positions elements according to normal flow which means that <em>block</em> elements start
+    rendering from new line and inline elements are displayed next to the previous element on the same line.<br />
+    CSS gives us the possibility to change default element position to place element where we want it to be.<br />
+    This is done by using css <em>position</em> property:
+</p>
+<pre>
+#elementId {
+    position: relative;
+}
+</pre>
+<p>    There are 4 types of values <em>position</em> property of an element can accept:</p>
+<h4>absolute</h4>
+<p>
+   absolutely positioned elements are completely removed from the flow of containing block .<br />
+    What it means is that now position of an element has to be specified directly, otherwise element would overlap with preceding and following elements of the container.<br />
+    Element position is specified by <em>top</em>, <em>bottom</em>, <em>left</em>, <em>right</em> properties.<br />
+    <em>Note:</em> What would be the "containing block" for absolute positioned element? Well, it would be the first element up the elements tree with <em>position</em>
+    property set to <em>relative</em>. If such element is not found - it will be the <em>body</em> element.<br />
+    It means that without any parent elements with relative positioning <em>top: 0;</em> will mean "top of the page" otherwise it would be a top of a parent element.<br />
+</p>
+<p>
+        Example of absolute positioning:
+</p>
+<div class="playground" data-width="150px" data-height="150px" data-show="1">
+    <pre class="exampleHtml">
+<div id="absolutelyPositioned">
+Some content  
+</div>    
+    </pre>
+    <pre class="exampleCss">
+#absolutelyPositioned {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    border: 1px solid gray;
+}
+    </pre>   
+</div>
+
+<h4>relative</h4>
+<p>
+    Relative position property means position relative to it's position in normal flow.<br />
+    First space is reserved for the element in page flow and then the element is moved using the offsets <em>top</em>, <em>bottom</em>, <em>left</em>, <em>right</em><br />
+    <em>top: 5px;</em> means "5px from the top of it's original position".<br />
+    It is important to remember that element is not taken out of flow so when moved - it will create a "empty space" in the document.
+</p>
+<p>
+    Lets see an example:
+</p>
+<div class="playground" data-width="300px" data-height="200px" data-show="1">
+    <pre class="exampleHtml">
+<div id="top-1">Top div</div>
+<div id="relativelyPositioned">
+Some content  
+</div>
+<div id="bottom-1" >Bottom div</div>    
+    </pre>
+    <pre class="exampleCss">
+#top-1 {
+    background-color: red;
+}
+
+#bottom-1 {
+    background-color: blue;
+}
+
+#relativelyPositioned {
+    position: relative;
+    top: 5px;
+    height: 100px;
+    border: 1px solid gray;
+    background: green;
+    opacity: 0.5;
+}
+    </pre>   
+</div>
+
+<h4>fixed</h4>
+<p>
+    <em>fixed</em> positionmeans element is fixed in browser viewport using  <em>top</em>, <em>bottom</em>, <em>left</em>, <em>right</em><br /> properties.
+    It's similar to the <em>absolute</em> position in that element is taken out from normal page flow but the difference is that in case of <em>fixed</em> it's positioned
+    against the browser window, not the document. It means that if you scroll down the page it will stay in the same place.
+</p>
+<div class="playground" data-height="20px" data-width="50px" data-show="1">
+    <pre class="exampleHtml">
+<div id="fixedPositioned">
+Fixed 
+</div>    
+    </pre>
+    <pre class="exampleCss">
+#fixedPositioned {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    border: 1px solid gray;
+    background-color: magenta;
+}
+    </pre>   
+</div>
+<p>
+    You should see magenta colored box in left top corner of your browser.
+</p>
+<h4>inherit and static</h4>
+<p>
+    This is the property value you won't be using often. This just means normal element position in page flow. All created elements get this by default.<br />
+    The only reason to specify it is when you want to override previously set position. 
+</p>    
+
+<h3>Float property</h3>
+<p>
+    <em>float</em> property is one of the most commonly used positioning properties in web design. <br />
+    Float allows to push element to the right or to the left of the container and let other elements wrap around it.<br />
+    <em>float</em> property accepts <em>right</em> and <em>left</em> values. Example:
+</p>
+<div class="playground" data-height="100px" data-width="270px" data-show="1">
+    <pre class="exampleHtml">
+<div id="floatedElement">
+Fixed 
+</div>
+This is text that wraps around the element 
+to the left which is floated. 
+Notice how text starts right next to 
+the element as opposed to the 
+starting from new line after the div.    
+    </pre>
+    <pre class="exampleCss">
+#floatedElement {
+    float: left;
+    border: 1px solid gray;
+    height: 40px;
+}
+    </pre>   
+</div>
+
+<p>
+    Most intuitive use of floated elements is for making text wrap around the image.
+</p>
+<p>
+    <em>float</em> property is very popular when creating designs with columns. By making 2 divs float we can position them right next to each other.<br />
+    Or by floating element to the sides of the container we can put text content in the middle width of which will be automatically adjusted when container width changes.<br />
+    Lets see the example:
+</p>
+<div class="playground" data-height="150px" data-width="300px" data-show="1">
+    <pre class="exampleHtml">
+<div id="floated1">
+Left floated
+</div>
+<div id="floated2">
+Right floated
+</div>
+Here is some text In the middle of 2 floated divs.  
+    </pre>
+    <pre class="exampleCss">
+#floated1 {
+    background-color: magenta;
+    float: left;
+}
+#floated2 {
+    background-color: green;
+    float: right;
+}
+#floated1,
+#floated2 {
+    border: 1px solid gray;
+    height: 100px;
+}
+    </pre>   
+</div>
+
+<h4>"Clearing" the floats</h4>
+<p>
+    As already pointed out element that comes next to the floated element is rendered right next to it.<br />
+    Let's consider 2 column design with footer. If 2 columns are floated footer would be rendered next to the second column (if width of the page allows).<br />
+    This is clearly not what we wanted to do.<br />
+    To remedy this we can use <em>clear</em> property and apply it to the next element after the floated.<br />
+This is most commonly done with <em>empty div</em> approach. Div with no content is created right after the floated element and property <em>clear</em> is applied to it.<br />
+</p>
+<pre>
+&lt;div style=&quot;clear: both;&quot;&gt;&lt;/div&gt;
+</pre>
+<p>
+    Notice that style is applied directly to the div as opposed to writing it in stylesheet. The reason is simple - this element sole purpose of existence is to clear float
+    for next elements, so the only way <em>clear: both;</em> is going to be changed if when element is removed, so there is no point of moving it into stylesheet file.<br />
+    Let us see how it looks on example:
+</p>
+
+<div class="playground" data-height="160px" data-width="300px" data-show="1">
+    <pre class="exampleHtml">
+<div id="floated11">
+Column 1
+</div>
+<div id="floated21">
+Column 2
+</div>
+Here is some text to the right of 2 floated columns
+<div style="clear: both;"></div>
+<div id="footer11">Footer text</div>
+    </pre>
+    <pre class="exampleCss">
+#floated11 {
+    background-color: magenta;
+}
+
+#floated21 {
+    background-color: green;
+}
+
+#floated11,
+#floated21 {
+    float: left;
+    border: 1px solid gray;
+    height: 100px;
+}
+#footer11 {
+    background-color: blue;
+    height: 50px;
+}
+    </pre>   
+</div>
+
+</div>
+
+        <footer>
+
+        </footer>
+    </div> <!--! end of #container -->
+
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+
+
+  <!-- scripts concatenated and minified via ant build script-->
+  <script defer src="js/libs/jquery.textarea.js"></script> 
+  <script defer src="js/plugins.js"></script>
+  <script defer src="js/script.js"></script>
+  <script src="js/playground.js"></script>
+  <script src="js/navigation.js"></script>  
+  <!-- end scripts-->
+
+	
+  <!-- Change UA-XXXXX-X to be your site's ID -->
+  <script>
+    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+    Modernizr.load({
+      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+    });
+  </script>
+
+
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+  
+</body>
+</html>

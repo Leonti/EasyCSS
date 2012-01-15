@@ -57,6 +57,7 @@ div.playground {
     display: none;
     border: 2px solid white;
     margin-top: 5px;
+    padding-bottom: 10px;
 }
 
 div.button {
@@ -86,7 +87,6 @@ div.playground div.resultArea {
 
 div.playground div.userCodeArea {
     width: 300px;
-    height: 400px;
     float: left;
 }
 
