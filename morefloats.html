@@ -1,0 +1,183 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/b/378 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+  <!-- CSS: implied media=all -->
+  <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navigation.css"> 
+  <link rel="stylesheet" href="css/tutorial.css">
+  <!-- end CSS-->
+
+  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+
+  <!-- All JavaScript at the bottom, except for Modernizr / Respond.
+       Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
+       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="js/libs/modernizr-2.0.6.min.js"></script>
+  
+</head>
+
+<body>
+
+    <div id="container">
+        <header>
+            <h1>More about floats</h1>
+        </header>
+        <div id="main" role="main">       
+            <p>
+                <em>float</em> property is extremely useful while doing css design, but using it has some common pitfalls, which we are going to discuss.
+            </p>
+            <h4>Float property highlights</h4>
+            <p>Quick <em>float</em> highlights:</p>
+                <ul>
+                    <li>Floated element is displayed as blocked, as if it had <em>display</em> property set to <em>display: block;</em></li>
+                    <li>Floated element will shrink to its content if <em>width</em> is not set specifically</li>
+                    <li>Element is "glued" to right or left side of container</li>
+                    <li>All other content wraps around floated element</li>
+                </ul>
+            
+            <h4>Order of the elements matters</h4>
+            <p>
+                Let's  see following use case: <br />
+                We want to position one block on the left and another on the right. Right block should be glued to the right side and left should expand if container expands.<br />
+                The naive approach would be:
+            </p>
+<div class="playground" data-height="60px" data-width="300px" data-show="1">
+    <pre class="exampleHtml">
+<div>Left content that fills all width available and is able to expand when container expands</div>
+<div id="floatedRight">Right</div>
+    </pre>
+    <pre class="exampleCss">
+div#floatedRight {
+    float: right;
+}
+    </pre>   
+</div>
+
+<p>
+    As we can see it's not what we wanted - right div is below the left one.<br />
+    Let's see how browser displays what we wrote:
+</p>
+<ol>
+    <li>Render first div - it's block element so expand it to the full width of container</li>
+    <li>Render second div, move it to the right</li>
+</ol>    
+<p>It's all simple now: just think where floated element would be displayed normally and move it to the right.<br/>
+To make our example work we should change the order of divs - first display right floated element and only then left one.
+</p>            
+<div class="playground" data-height="60px" data-width="300px" data-show="1">
+    <pre class="exampleHtml">
+<div id="floatedRight">Right</div>
+<div>Left content that fills all width available and is able to expand when container expands</div>
+    </pre>
+    <pre class="exampleCss">
+div#floatedRight {
+    float: right;
+}
+    </pre>   
+</div>            
+
+ <h4>Another ordering example</h4>
+<p>
+    Imagine you have three buttons that you want to align against right side of container<br />
+    So you would write elements one after another and apply <em>float: right;</em> property.   
+</p>
+<div class="playground" data-height="60px" data-width="300px" data-show="1">
+    <pre class="exampleHtml">
+<div class="floatedRight">First</div>
+<div class="floatedRight">Second</div>
+<div class="floatedRight">Third</div>
+    </pre>
+    <pre class="exampleCss">
+div.floatedRight {
+    float: right;
+}
+    </pre>   
+</div> 
+<p>
+    Order is reversed. Why? Because browser applies styles to elements as they appear in html.
+</p>
+<ol>
+    <li><em>First</em> right floated - move it to the right</li>
+    <li><em>Second</em> right floated - move it to the right</li>
+    <li><em>Third</em> right floated - move it to the right</li>
+</ol>
+<p>
+    Now it's clear why they appear in different order then written in markup.<br />
+    So all we have to do is to place them in reversed order:
+</p>
+<div class="playground" data-height="60px" data-width="300px" data-show="1">
+    <pre class="exampleHtml">
+<div class="floatedRight">Third</div>
+<div class="floatedRight">Second</div>
+<div class="floatedRight">First</div>
+    </pre>
+    <pre class="exampleCss">
+div.floatedRight {
+    float: right;
+}
+    </pre>   
+</div> 
+
+        </div>
+
+        <footer>
+
+        </footer>  
+    </div> <!--! end of #container -->
+
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+
+
+  <!-- scripts concatenated and minified via ant build script-->
+  <script defer src="js/libs/jquery.textarea.js"></script> 
+  <script defer src="js/plugins.js"></script>
+  <script defer src="js/script.js"></script>
+  <script src="js/playground.js"></script>
+  <script src="js/navigation.js"></script>  
+  <!-- end scripts-->
+
+	
+  <!-- Change UA-XXXXX-X to be your site's ID -->
+  <script>
+    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+    Modernizr.load({
+      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+    });
+  </script>
+
+
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+  
+</body>
+</html>
