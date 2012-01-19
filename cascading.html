@@ -1,0 +1,153 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/b/378 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+  <!-- CSS: implied media=all -->
+  <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navigation.css"> 
+  <link rel="stylesheet" href="css/tutorial.css">
+  <!-- end CSS-->
+
+  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+
+  <!-- All JavaScript at the bottom, except for Modernizr / Respond.
+       Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
+       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="js/libs/modernizr-2.0.6.min.js"></script>
+  
+</head>
+
+<body>
+
+    <div id="container">
+        <header>
+            <h1>Cascading and media types</h1>
+        </header>
+        <div id="main" role="main">
+            <h3>Cascading</h3>
+            <p>
+<em>Cascading Style Sheets</em> cascade. This means that the styles are applied in order as they are read by the browser. The first style is applied and then the second and so on. What this means is that if a style appears at the top of a style sheet and then is changed lower down in the document, the second instance of that style will be the one applied, not the first.                
+            </p>
+            <p>
+                The document tree is linked to inheritance of property styles. Elements lying lower in the hierarchy (descendants) inherits attributes from ancestors, when they don't have specified css rules. 
+            </p>
+            <p style="color: blue;">
+This paragraph is blue, inside there is <span style="font-style: italic;">italics</span> and <span style="font-weight: bold;">bold</span>, which have not been given any coloring. So they inherit color from the ancestor (in this case from paragraph), but have 
+<em>font-weight</em> and <em>font-style</em>  set as their own styles.
+
+There is also a span which has been given following attributes: <em>color: green;</em>. Color of the text is not inherited - it's overwritten: <span style="color: green;">span</span>.                
+            </p>
+            
+            <p>
+
+The <em>!important</em> rule is a way to make your CSS cascade but also have the rules you feel are most crucial always be applied. A rule that has the <em>!important</em> property will always be applied no matter where that rule appears in the CSS document. So if you wanted to make sure that a property always applied, you would add the !important property to the tag. So, to make the paragraph text always blue, in the above example, you would write:                
+            </p> 
+<pre>
+    p { color: blue !important; }
+</pre>
+            
+            <h3>Media types</h3>            
+<p>
+    One of the key advantages of styles is possible to determine how the document will look in different media: on screen, paper, speech synthesizer, a device for reading braille, etc.
+</p>
+<p>
+    There are two ways to determine the independence of style sheets and assign different attributes to different media:
+ </p> 
+ <h4>Specifying the target medium in a style sheet, using the command <em>@media</em> or <em>@import:</em></h4>
+ <pre>
+	<em>@media</em> print {
+        /* CSS for print */
+	}
+
+        <em>@import url(print.css)</em> print;
+ </pre>
+ <h4>Specifying the target medium within the html document</h4>
+ <pre>
+        &lt;!DOCTYPE&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+            &lt;title&gt;Target medium&lt;/title&gt;
+            &lt;link rel=&quot;Stylesheet&quot; type=&quot;text/css&quot; media=&quot;print, handheld&quot; href=&quot;print.css&quot; /&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;p&gt;Content&lt;/p&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;     
+ </pre>
+ 
+ <h4>Media Types</h4>
+ <p>The names of the media are a reflection of target devices for which the relevant properties make sense (CSS 2):</p>
+ <p>
+<em>all</em> - for all devices<br />
+<em>aural</em> - speech synthesizers (auditory style sheets) - CSS 2.1 introduces instead the type of speech<br />
+<em>braille</em> - devices for reading braille <br />
+<em>embossed</em> - braille Printers<br />
+<em>handheld</em> - hand-held devices (typically small screen, monochrome, limited bandwidth)<br />
+<em>print</em> - opaque printed materials and print preview<br />
+<em>projection</em> – for pojectors<br />
+<em>screen</em> - color computer screen<br />
+<em>tty</em> - media using a grid of fixed width as teleprinters, terminals, or portable devices with limited display capabilities<br />
+<em>tv</em> – for tv    
+ </p>
+        </div>
+
+        <footer>
+
+        </footer>  
+    </div> <!--! end of #container -->
+
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+
+
+  <!-- scripts concatenated and minified via ant build script-->
+  <script defer src="js/libs/jquery.textarea.js"></script> 
+  <script defer src="js/plugins.js"></script>
+  <script defer src="js/script.js"></script>
+  <script src="js/playground.js"></script>
+  <script src="js/navigation.js"></script>  
+  <!-- end scripts-->
+
+	
+  <!-- Change UA-XXXXX-X to be your site's ID -->
+  <script>
+    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+    Modernizr.load({
+      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+    });
+  </script>
+
+
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+  
+</body>
+</html>

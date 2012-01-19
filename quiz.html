@@ -1,0 +1,178 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/b/378 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+  <!-- CSS: implied media=all -->
+  <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navigation.css"> 
+  <link rel="stylesheet" href="css/tutorial.css">
+  <!-- end CSS-->
+
+  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+
+  <!-- All JavaScript at the bottom, except for Modernizr / Respond.
+       Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
+       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="js/libs/modernizr-2.0.6.min.js"></script>
+  
+<script language="JavaScript">
+
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://javascript.internet.com -->
+
+<!-- Begin
+// Insert number of questions
+var numQues = 4;
+
+// Insert number of choices in each question
+var numChoi = 3;
+
+// Insert number of questions displayed in answer area
+var answers = new Array(4);
+
+// Insert answers to questions
+answers[0] = "Cascading Style Sheets";
+answers[1] = "Dynamic HTML";
+answers[2] = "Netscape";
+answers[3] = "Common Gateway Interface";
+
+// Do not change anything below here ...
+function getScore(form) {
+  var score = 0;
+  var currElt;
+  var currSelection;
+  for (i=0; i<numQues; i++) {
+    currElt = i*numChoi;
+    for (j=0; j<numChoi; j++) {
+      currSelection = form.elements[currElt + j];
+      if (currSelection.checked) {
+        if (currSelection.value == answers[i]) {
+          score++;
+          break;
+        }
+      }
+    }
+  }
+  score = Math.round(score/numQues*100);
+  form.percentage.value = score + "%";
+  var correctAnswers = "";
+  for (i=1; i<=numQues; i++) {
+    correctAnswers += i + ". " + answers[i-1] + "\r\n";
+  }
+  form.solutions.value = correctAnswers;
+}
+//  End -->
+</script> 
+</head>
+
+<body>
+
+    <div id="container">
+        <header>
+            <h1>Quiz</h1>
+        </header>
+        <div id="main" role="main">
+
+<p>
+<h3>CSS Quiz</h3>
+
+<p>
+    <form name="quiz">
+    1. What does CSS stand for?
+    <ul style="margin-top: 1pt">
+    <li><input type="radio" name="q1" value="Colorful Style Symbols">Colorful Style Symbols</li>
+    <li><input type="radio" name="q1" value="Cascading Style Sheets">Cascading Style Sheets</li>
+    <li><input type="radio" name="q1" value="Computer Style Symbols">Computer Style Symbols</li>
+    </ul>
+
+    2. What does DHTML stand for?
+    <ul style="margin-top: 1pt">
+    <li><input type="radio" name="q2" value="Dramatic HTML">Dramatic HTML</li>
+    <li><input type="radio" name="q2" value="Design HTML">Design HTML</li>
+    <li><input type="radio" name="q2" value="Dynamic HTML">Dynamic HTML</li>
+    </ul>
+    3. Who created Javascript?
+    <ul style="margin-top: 1pt">
+    <li><input type="radio" name="q3" value="Microsoft">Microsoft</li>
+    <li><input type="radio" name="q3" value="Netscape">Netscape</li>
+    <li><input type="radio" name="q3" value="Sun Micro Systems">Sun Micro Systems</li>
+    </ul>
+    4. What does CGI stand for?
+    <ul style="margin-top: 1pt">
+    <li><input type="radio" name="q4" value="Cascading Gate Interaction">Cascading Gate Interaction</li>
+    <li><input type="radio" name="q4" value="Common GIF Interface">Common GIF Interface</li>
+    <li><input type="radio" name="q4" value="Common Gateway Interface">Common Gateway Interface</li>
+    </ul>
+
+    <input type="button" value="Get score" onClick="getScore(this.form)">
+    <input type="reset" value="Clear answers">
+    <p> Score = <strong><input class="bgclr" type="text" size="5" name="percentage" disabled></strong><br><br>
+    Correct answers:<br>
+    <textarea class="bgclr" name="solutions"  rows="4" cols="30" disabled="disabled">
+    </textarea>
+    </form>    
+</p>
+            
+            
+        </div>
+
+        <footer>
+
+        </footer>  
+    </div> <!--! end of #container -->
+
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+
+
+  <!-- scripts concatenated and minified via ant build script-->
+  <script defer src="js/libs/jquery.textarea.js"></script> 
+  <script defer src="js/plugins.js"></script>
+  <script defer src="js/script.js"></script>
+  <script src="js/playground.js"></script>
+  <script src="js/navigation.js"></script>  
+  <!-- end scripts-->
+
+	
+  <!-- Change UA-XXXXX-X to be your site's ID -->
+  <script>
+    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+    Modernizr.load({
+      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+    });
+  </script>
+
+
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+  
+</body>
+</html>
