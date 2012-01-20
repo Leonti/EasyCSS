@@ -1,0 +1,45 @@
+textarea#userCss, 
+div#solution {
+    width: 300px;
+    height: 450px;
+    float: left;
+}
+
+div#solution {
+   position: relative;
+    top: -10px;
+    margin-top: 0;
+}
+div#solution {
+    display: none;
+}
+
+span#applyCss, 
+span#viewCss {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+div#resultArea {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    border: 1px gray solid;
+    float: left;
+    background-color: white;
+}
+
+img#exampleImage {
+    float: left;
+    position: relative;
+    top: -2px;    
+}
+
+pre#htmlSource {
+    max-width: 750px;
+}
+
+div.playground {
+    display: none;
+}
+

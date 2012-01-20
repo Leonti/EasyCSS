@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/navigation.css"> 
   <link rel="stylesheet" href="css/tutorial.css">
+   <link rel="stylesheet" href="css/practical.css">
   <!-- end CSS-->
 
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -43,59 +44,70 @@
             <h1>Easy CSS</h1>
         </header>
         <div id="main" role="main">
-            <h3>Introduction</h3>
+            <h3>Practical test</h3>
             <p>
-                This tutorial is aimed at people who just started to style their html markup with CSS but still have some way to go.<br />
-                Most of the things in this tutorial can be considered basic, but why would you need a tutorial for advanced stuff?<br />
-                There is a documentation for that :)<br />
-                Tutorial highlights things that are most commonly used in CSS styling, so it can help you get started.<br />
-                A lot is shown on practical examples which you can modify and see how it works.<br />
-                There is also a quizand practical test at the end of the tutorial.<br />
+                Your goal here is to make content in left container look the same as image on the right of it.<br />
+                You just put CSS rules into text area using div ids from html snippet and click 'Apply!' button.<br />
+                Here is information you will need:<br />
             </p>
-            <h3>Content</h3>
-            <h4><a href="selectors.html">Basics. Syntax and selectors</a></h4>
-                <p>
-                    This section is just to widen your view on different types of selectors that can be used in CSS.
-                </p>
-            <h4><a href="cascading.html">Cascading and media types</a></h4>
-                <p>
-                    Why css is called css and what to expect when you apply styles to an element in multiple places.
-                </p>                
-             <h4><a href="fonts.html">Fonts</a></h4>
-                <p>
-                    Pages are all about content and you can't imagine content without text, which also need to be styled :)
-                </p>  
-                <h4><a href="boxmodel.html">Box model</a></h4>
-                <p>
-                    Box model is a set of rules of how CSS treats different types of elements, their dimensions, etc.
-                </p>                   
-               <h4><a href="positioning.html">Positioning</a></h4>
-                <p>
-                    One of the most important parts of page design - elements positioning.
-                </p>              
-                <h4><a href="morefloats.html">More about floats</a></h4>
-                <p>
-                    Some practical aspects of using <em>float</em> property explained n previous section.
-                </p>
-                 <h4><a href="centering.html">Centering things</a></h4>
-                <p>
-                    It's one of the commonest tasks doing CSS design - position elements in center of something.
-                </p>            
-                 <h4><a href="content.html">Content property</a></h4>
-                <p>
-                    Not really commonly used and somewhat controversial property called <em>content</em>
-                </p>                 
-                 <h4><a href="practicaltest.html">Practical test</a></h4>
-                <p>
-                    It's time to play and see what you learned! You can write CSS on the page and see what results it produces.<br />
-                    Your task is to make existing html match the image.
-                </p>                
-                  <h4><a href="quiz.html">Quiz!</a></h4>
-                <p>
-                    Short quiz.
-                </p>                
+<ul>
+    <li>Both divs(red and green) have width <em>200px</em> and height <em>40px</em></li>
+    <li>Red divs font is <em>helvetica</em> and greens is <em>times</em></li>
+    <li>Font sizes are 15px and 14px</li>
+</ul>            
+<p>
+    There are multiple ways to do it, so just remember what you learned and experiment until you get the same result.<br />
+    There is example solution provided (one of many ways) by clicking on 'View solution' button.
+</p>
+        <div id="practicalTest">
+            <div id="viewCss" class="button">View solution</div><br />
+            <textarea id="userCss"></textarea>
+            <div id="solution">
+                <pre>
+div#redDiv,
+div#greenDiv {
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
+div#redDiv {
+    background-color: red;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: bold;
+    font-family: helvetica;
+    font-size: 15px;    
+}
+
+div#greenDiv {
+    background-color: green;
+    font-family: times;
+    font-size: 14px;
+    position: absolute;
+    left: 50px;
+    top: 130px;
+}
+                </pre>
+            </div>
+            <div style="clear: both;"></div><br />
+            <div id="applyCss" class="button">Apply!</div>
+
+            <pre id="htmlSource">
+&lt;div id=&quot;redDiv&quot;&gt;This is red div&lt;/div&gt;
+&lt;div id=&quot;greenDiv&quot;&gt;This is green div&lt;/div&gt;
+            </pre>
+
+            <div id="resultArea">
+                <div id="redDiv">This is red div</div>
+                <div id="greenDiv">This is green div</div>            
+            </div>
+            <img id="exampleImage" src="img/positioning.png" />
+            <div style="clear: both;"></div>
         </div>
-   
+        </div>
         <footer>
 
         </footer>
@@ -113,8 +125,9 @@
   <script defer src="js/libs/jquery.textarea.js"></script> 
   <script defer src="js/plugins.js"></script>
   <script defer src="js/script.js"></script>
-  <script src="js/playground.js"></script>
-  <script src="js/navigation.js"></script>  
+  <script defer src="js/practical.js"></script> 
+  <script defer src="js/playground.js"></script>
+  <script defer src="js/navigation.js"></script> 
   <!-- end scripts-->
 
 	
