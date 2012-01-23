@@ -1,0 +1,267 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/b/378 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+  <!-- CSS: implied media=all -->
+  <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navigation.css"> 
+  <link rel="stylesheet" href="css/tutorial.css">
+  <!-- end CSS-->
+
+  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+
+  <!-- All JavaScript at the bottom, except for Modernizr / Respond.
+       Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
+       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="js/libs/modernizr-2.0.6.min.js"></script>
+  
+</head>
+
+<body>
+
+    <div id="container">
+        <header>
+            <h1>What's new in CSS3</h1>
+        </header>
+        <div id="main" role="main">       
+            <p>
+                <em>CSS3</em> is a new CSS standard version. Many parts of it are still in progress and browsers are gradually adding new specifications to their engines.<br />
+                CSS3 offers new design capabilities which greatly simplify common design tasks.
+            </p>
+            <h4>Browser support</h4>
+            <p>
+                Browser are gradually support new CSS standard, but since it's not yet officially released browser prefer to use custom property names, for example:<br />
+                <em>-moz-border-radius</em> instead of just <em>border-radius</em><br />
+                The consequence of this is that you have to provide different property for each browser<br />
+            </p>
+            <h3>Shadows</h3>
+            <p>
+                CSS3 introduces support for shadows. Shadows are very popular design choice and usually were done by placing shadow images under container for block elements 
+                and using images instead of text for text shadows.<br />
+                Luckily CSS3 solves both of these problems:
+            </p>
+            <h4>Box shadow</h4>
+            <p>
+                The syntax is following:
+            </p>
+<pre>
+.shadow
+{
+    -moz-box-shadow: 3px 3px 5px 2px #bbb;
+    -webkit-box-shadow: 3px 3px 5px 2px #bbb;
+    box-shadow: 3px 3px 5px 2px #bbb;
+}
+</pre>
+<p>
+    Let's discuss property values in order of appearance:  
+</p> 
+<ol>
+    <li>The horizontal offset of the shadow, positive means the shadow will be on the right of the box, a negative offset will put the shadow on the left of the box.</li>
+    <li>The vertical offset of the shadow, a negative one means the box-shadow will be above the box, a positive one means the shadow will be below the box.</li>
+    <li>The blur radius (optional), if set to 0 the shadow will be sharp, the higher the number, the more blurred it will be.</li>
+    <li>The spread radius (optional), positive values increase the size of the shadow, negative values decrease the size. Default is 0 (the shadow is same size as blur).</li>
+    <li>Color</li>
+</ol>
+<div class="playground" data-height="200px" data-width="200px" data-show="1">
+    <pre class="exampleHtml">
+<div id="shadowedDiv" class="shadow">Shadowed div</div>
+    </pre>
+    <pre class="exampleCss">
+.shadow {
+  -moz-box-shadow: 3px 3px 5px 2px #bbb;
+  -webkit-box-shadow: 3px 3px 5px 2px #bbb;
+  box-shadow: 3px 3px 5px 2px #bbb;
+}
+#shadowedDiv {
+  width: 100px; 
+  height: 100px;
+  margin: 50px;   
+}
+    </pre>   
+</div>
+
+            <h4>Text shadow</h4>
+            <p>
+                Another beautiful addition to CSS standard is text shadow. It allows to achieve really nice effects with simple means.<br />
+                Syntax is following: 
+            </p>
+<pre>
+#myDiv {
+    text-shadow: 1px 2px 3px #666;
+}
+</pre>
+            <p>
+                Values are:
+            </p>
+            <ol>
+                <li>Distance of the shadow in horizontal direction(x)</li>
+                <li>Distance in vertical direction(y)</li>
+                <li>Blur of the shadow</li>
+                <li>Colour of the shadow</li>
+            </ol>
+            <p>Please notice that <em>text-shadow</em> is already widely supported, so there are not any browser-specific properties</p>
+<div class="playground" data-height="50px" data-width="200px" data-show="1">
+    <pre class="exampleHtml">
+<div id="textShadow">Shadowed text</div>
+    </pre>
+    <pre class="exampleCss">
+#textShadow {
+    text-shadow: 1px 2px 3px #666;
+    font-size: 24px;
+}
+    </pre>   
+</div>            
+            <h3>Gradients</h3>
+            <p>
+                Support for gradients is one of the most inconsistent across the browsers.<br />
+                Look at the syntax to display gradient from black to white in popular browsers:
+            </p>
+<pre>
+.gradient {
+    W3C Syntax:
+    <em>background: linear-gradient(left top,white, black);</em>
+    WebKit Syntax:
+    background: -webkit-gradient(linear, left bottom, right top, from(#fff), to(#000));
+    Mozilla Syntax:
+    background: -moz-linear-gradient(left,  #fff,  #000);
+    Microsoft Syntax:
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#000000');
+}
+</pre>            
+ <p>
+     You have to test especially gradients (as any other css3 properties) in different browsers because of very different gradient implementations.
+ </p>           
+ <div class="playground" data-height="200px" data-width="200px" data-show="1">
+    <pre class="exampleHtml">
+<div id="gradientDiv" class="gradient"></div>
+    </pre>
+    <pre class="exampleCss">
+.gradient {
+    background: linear-gradient(left top,white, black);
+    background: -webkit-gradient(linear, left bottom, right top, from(#fff), to(#000));
+    background: -moz-linear-gradient(left,  #fff,  #000);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#000000');
+}
+#gradientDiv {
+  width: 100px; 
+  height: 100px;
+  margin: 50px;   
+}
+    </pre>   
+</div>
+            
+           <h3>Border radius</h3> 
+           <p>
+               Rounded corners have become insanely popular in web design in recent years. To make corners round before css3 designer would have to use
+               images in every corner of the element.<br />
+               Disadvantages are clear:<br />
+               1. Too much markup.
+               2. Images had to be adjusted for background color of the element, so if color would change - images had to be redone accordingly.
+           </p>
+           <p>
+               Browser support is similar to the one of <em>border-shadow</em> property - each popular browser has it's own prefix.<br />
+               Here is example syntax:
+           </p>
+<pre>
+    border-radius: 10px; /* all corners with the same radius */
+    border-top-left-radius: 10px; /* only upper left corner will be rounded */
+    /* Webkit and Mozilla */
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+</pre>
+           <p>
+               Usually you have to put all three variations in your css so major browsers are supported.
+           </p>
+ <div class="playground" data-height="200px" data-width="200px" data-show="1">
+    <pre class="exampleHtml">           
+<div id="roundedDiv" class="rounded"></div>
+        </pre>
+    <pre class="exampleCss">
+.rounded {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+#roundedDiv {
+  width: 100px; 
+  height: 100px;
+  margin: 50px;   
+  border: 2px solid gray;
+}
+    </pre>   
+</div>
+           
+ <h3>CSS3 generators</h3>
+ <p>
+     As different browsers support CSS3 differently it would be very hard to write rules for very browser.<br />
+     Luckily there are CSS3 generator which will generate CSS3 rules for you that you can just past into your css styling.<br /> 
+     Here are some popular generators:
+ </p>
+ <ul>
+     <li><a href="http://css3gen.com/">css3gen.com</a></li>
+     <li><a href="http://www.colorzilla.com/gradient-editor/">Gradient editor</a></li>
+     <li><a href="http://border-radius.com/">Excellent border-radius generator</a></li>
+ </ul>
+
+        </div>
+
+        <footer>
+
+        </footer>  
+    </div> <!--! end of #container -->
+
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+
+
+  <!-- scripts concatenated and minified via ant build script-->
+  <script defer src="js/libs/jquery.textarea.js"></script> 
+  <script defer src="js/plugins.js"></script>
+  <script defer src="js/script.js"></script>
+  <script src="js/playground.js"></script>
+  <script src="js/navigation.js"></script>  
+  <!-- end scripts-->
+
+	
+  <!-- Change UA-XXXXX-X to be your site's ID -->
+  <script>
+    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+    Modernizr.load({
+      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+    });
+  </script>
+
+
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+  
+</body>
+</html>
