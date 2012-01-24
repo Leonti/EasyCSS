@@ -19,7 +19,7 @@ em {
     font-weight: bold;
 }
 
-div#main, header {
+div#main, header, footer {
     padding: 10px;
     background-color: #ECE5C7;
     border: 5px solid white;
@@ -97,3 +97,19 @@ div.playground div.userCodeArea textarea.userCode {
     margin-top: 5px;
 }
 
+/* bottom navigation */
+div#bottomNavigation {
+    position: relative;
+}
+
+div#navigationPrev {
+    float: left;
+}
+
+div#navigationNext {
+    float: right;
+}
+
+div#navigationHome {
+    text-align: center;
+}
